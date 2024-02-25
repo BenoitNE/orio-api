@@ -12,7 +12,7 @@ import java.util.List;
 public class JobDescription {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String job;
