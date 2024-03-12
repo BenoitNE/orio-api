@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import com.orio.orioapi.persistence.entity.JobDescription;
 import com.orio.orioapi.persistence.repository.JobDescriptionRepository;
 import com.orio.orioapi.service.impl.JobDescriptionServiceImpl;
+import com.orio.orioapi.util.JobDescriptionTestUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -30,8 +32,8 @@ public class JobDescriptionServiceTest {
     public void testGetAllJobDescriptions() {
         // Given
         List<JobDescription> jobDescriptions = new ArrayList<>();
-        jobDescriptions.add(createJobDescription(1));
-        jobDescriptions.add(createJobDescription(2));
+        jobDescriptions.add(JobDescriptionTestUtil.createJobDescription(1));
+        jobDescriptions.add(JobDescriptionTestUtil.createJobDescription(2));
         when(jobDescriptionRepository.findAll()).thenReturn(jobDescriptions);
 
         // When
@@ -46,7 +48,7 @@ public class JobDescriptionServiceTest {
     @Test
     public void testGetJobDescriptionById() {
         // Given
-        JobDescription jobDescription = createJobDescription(1);
+        JobDescription jobDescription = JobDescriptionTestUtil.createJobDescription(1);
         when(jobDescriptionRepository.findById(1L)).thenReturn(Optional.of(jobDescription));
 
         // When
@@ -61,7 +63,7 @@ public class JobDescriptionServiceTest {
     @Test
     public void testSaveJobDescription() {
         // Given
-        JobDescription jobDescription = createJobDescription(1);
+        JobDescription jobDescription = JobDescriptionTestUtil.createJobDescription(1);
         when(jobDescriptionRepository.save(jobDescription)).thenReturn(jobDescription);
 
         // When
@@ -84,11 +86,24 @@ public class JobDescriptionServiceTest {
         verify(jobDescriptionRepository, times(1)).deleteById(userId);
     }
 
-    private JobDescription createJobDescription(long id) {
-        JobDescription jobDescription = new JobDescription();
-        jobDescription.setId(id);
-        jobDescription.setJob("TestJob");
-        return jobDescription;
+    @Test
+    public void getJobDescriptionsByInterests () {
+        // Given
+        List<String> interests = Arrays.asList("Java", "Programming");
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findByInterestsIn(interests))
+                .thenReturn(Arrays.asList(
+                        JobDescriptionTestUtil.createJobDescription1(),
+                        JobDescriptionTestUtil.createJobDescription2()
+                ));
+
+        // When
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsByInterests(interests);
+
+        // Then
+        assertNotNull(result);
     }
+
 }
 
