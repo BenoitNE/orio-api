@@ -15,4 +15,3 @@ public interface JobDescriptionService {
 
     void deleteJobDescriptionById(long id);
 }
-
