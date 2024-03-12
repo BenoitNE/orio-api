@@ -2,6 +2,8 @@ package com.orio.orioapi.controller;
 
 import com.orio.orioapi.persistence.entity.JobDescription;
 import com.orio.orioapi.service.JobDescriptionService;
+import com.orio.orioapi.util.JobDescriptionDtoTestUtil;
+import com.orio.orioapi.util.JobDescriptionTestUtil;
 import com.orio.orioapi.web.controller.JobDescriptionUserController;
 import com.orio.orioapi.web.dto.JobDescriptionDto;
 import com.orio.orioapi.web.mapper.JobDescriptionMapper;
@@ -67,4 +69,31 @@ public class JobDescriptionUserControllerTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(jobDescriptionDto, responseEntity.getBody());
     }
+
+    @Test
+    public void getJobDescriptionByInterests () {
+        // Given
+        List<String> interests = Arrays.asList("Java", "Programming");
+
+        List<JobDescription> jobDescriptions = Arrays.asList(
+                JobDescriptionTestUtil.createJobDescription1(),
+                JobDescriptionTestUtil.createJobDescription2()
+        );
+        when(jobDescriptionService.getJobDescriptionsByInterests(interests)).thenReturn(jobDescriptions);
+
+        List<JobDescriptionDto> jobDescriptionDtoList = Arrays.asList(
+                JobDescriptionDtoTestUtil.createJobDescriptionDto1(),
+                JobDescriptionDtoTestUtil.createJobDescriptionDto2()
+        );
+        when(jobDescriptionMapper.entitiesToDtoList(jobDescriptions)).thenReturn(jobDescriptionDtoList);
+
+        // When
+        ResponseEntity<List<JobDescriptionDto>> response = jobDescriptionUserController.getJobDescriptionByInterests(interests);
+
+        // Then
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(jobDescriptionDtoList, response.getBody());
+
+    }
+
 }

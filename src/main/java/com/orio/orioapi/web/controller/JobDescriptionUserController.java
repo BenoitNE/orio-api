@@ -6,9 +6,9 @@ import com.orio.orioapi.web.dto.JobDescriptionDto;
 import com.orio.orioapi.web.mapper.JobDescriptionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +42,27 @@ public class JobDescriptionUserController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/interests")
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionByInterests(@RequestParam("interests") List<String> interests) {
+        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsByInterests(interests);
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    private static <T> List<T> iterableToList(Iterable<T> iterable) {
+        List<T> resultList = new ArrayList<>();
+
+        for (T element : iterable) {
+            resultList.add(element);
+        }
+
+        return resultList;
     }
 }
 

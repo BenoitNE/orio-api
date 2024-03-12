@@ -34,4 +34,9 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     public void deleteJobDescriptionById(long id) {
         jobDescriptionRepository.deleteById(id);
     }
+
+    @Override
+    public Iterable<JobDescription> getJobDescriptionsByInterests(List<String> interests) {
+        return jobDescriptionRepository.findByInterestsIn(interests);
+    }
 }
