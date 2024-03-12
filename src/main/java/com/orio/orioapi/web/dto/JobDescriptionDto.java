@@ -13,11 +13,10 @@ public class JobDescriptionDto {
     private List<String> interests;
     private String studyDuration;
     private String salary;
-    private String socialEnvironment;
     private List<String> physicalEnvironments;
     private String description;
     private String study;
-
+    private int userScore;
+    private int star;
 
 }
-
