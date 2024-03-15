@@ -143,5 +143,24 @@ public class JobDescriptionServiceTest {
         assertNotNull(result);
     }
 
+    @Test
+    public void getJobDescriptionsBySchoolSubjects () {
+        // Given
+        List<String> schoolSubjects = Arrays.asList("Informatique", "Beaux-Arts");
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findByInterestsIn(schoolSubjects))
+                .thenReturn(Arrays.asList(
+                        JobDescriptionTestUtil.createJobDescription1(),
+                        JobDescriptionTestUtil.createJobDescription2()
+                ));
+
+        // When
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySchoolSubjects(schoolSubjects);
+
+        // Then
+        assertNotNull(result);
+    }
+
 }
 

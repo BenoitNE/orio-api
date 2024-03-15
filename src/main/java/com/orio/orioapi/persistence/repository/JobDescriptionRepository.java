@@ -16,4 +16,5 @@ public interface JobDescriptionRepository extends JpaRepository<JobDescription, 
 
     Iterable <JobDescription> findBySchoolSubjectsIn(List<String> schoolSubjects);
 
+    Iterable <JobDescription> findBySchoolSubjectsIn(List<String> schoolSubjects);
 }
