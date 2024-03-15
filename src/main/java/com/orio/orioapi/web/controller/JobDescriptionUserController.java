@@ -64,18 +64,6 @@ public class JobDescriptionUserController {
         } else {
             return ResponseEntity.notFound().build();
         }
-        
-    }
-
-    @GetMapping("/school-subjects")
-    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionBySchoolSubjects(@RequestParam("schoolSubjects") List<String> schoolSubjects) {
-        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySchoolSubjects(schoolSubjects);
-        if (jobDescriptions != null) {
-            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
-            return ResponseEntity.ok(jobDescriptionDtoList);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping("/school-subjects")

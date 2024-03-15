@@ -21,6 +21,5 @@ public interface JobDescriptionService {
 
     Iterable<JobDescription> getJobDescriptionsBySchoolSubjects(List<String> schoolSubjects);
 
-    Iterable<JobDescription> getJobDescriptionsBySchoolSubjects(List<String> schoolSubjects);
 
 }
