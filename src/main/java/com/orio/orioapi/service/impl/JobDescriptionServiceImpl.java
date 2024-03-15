@@ -43,5 +43,9 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     @Override
     public Iterable<JobDescription> getJobDescriptionsBySalary(String salary) {
         return jobDescriptionRepository.findBySalaryContainingIgnoreCase(salary);
+
+    @Override
+    public Iterable<JobDescription> getJobDescriptionsBySchoolSubjects(List<String> schoolSubjects) {
+        return jobDescriptionRepository.findBySchoolSubjectsIn(schoolSubjects);
     }
 }
