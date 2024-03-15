@@ -104,6 +104,44 @@ public class JobDescriptionServiceTest {
         // Then
         assertNotNull(result);
     }
+    
+    @Test
+    public void getJobDescriptionsBySalary() {
+        // Given
+        String salary = "60 000";
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findBySalaryContainingIgnoreCase(salary))
+                .thenReturn(Arrays.asList(
+                        JobDescriptionTestUtil.createJobDescription1(),
+                        JobDescriptionTestUtil.createJobDescription2()
+                ));
+
+        // When
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySalary(salary);
+
+        // Then
+        assertNotNull(result);
+    }
+
+    @Test
+    public void getJobDescriptionsBySchoolSubjects () {
+        // Given
+        List<String> schoolSubjects = Arrays.asList("Informatique", "Beaux-Arts");
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findByInterestsIn(schoolSubjects))
+                .thenReturn(Arrays.asList(
+                        JobDescriptionTestUtil.createJobDescription1(),
+                        JobDescriptionTestUtil.createJobDescription2()
+                ));
+
+        // When
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySchoolSubjects(schoolSubjects);
+
+        // Then
+        assertNotNull(result);
+    }
 
     @Test
     public void getJobDescriptionsBySchoolSubjects () {
