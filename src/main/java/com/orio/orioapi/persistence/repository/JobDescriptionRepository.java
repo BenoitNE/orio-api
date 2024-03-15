@@ -11,5 +11,9 @@ import java.util.List;
 public interface JobDescriptionRepository extends JpaRepository<JobDescription, Long> {
 
     Iterable <JobDescription> findByInterestsIn(List<String> interests);
+
+    Iterable<JobDescription> findBySalaryContainingIgnoreCase(String salary);
+
     Iterable <JobDescription> findBySchoolSubjectsIn(List<String> schoolSubjects);
+
 }

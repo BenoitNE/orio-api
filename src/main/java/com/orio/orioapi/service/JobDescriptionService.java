@@ -16,6 +16,9 @@ public interface JobDescriptionService {
     void deleteJobDescriptionById(long id);
 
     Iterable<JobDescription> getJobDescriptionsByInterests(List<String> interests);
+    
+    Iterable<JobDescription> getJobDescriptionsBySalary(String salary);
 
     Iterable<JobDescription> getJobDescriptionsBySchoolSubjects(List<String> schoolSubjects);
+
 }

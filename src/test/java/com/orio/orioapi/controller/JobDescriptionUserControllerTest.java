@@ -95,6 +95,32 @@ public class JobDescriptionUserControllerTest {
         assertEquals(jobDescriptionDtoList, response.getBody());
 
     }
+    
+    @Test
+    public void getJobDescriptionBySalary () {
+        // Given
+        String salary = "60 000";
+
+        List<JobDescription> jobDescriptions = Arrays.asList(
+                JobDescriptionTestUtil.createJobDescription1(),
+                JobDescriptionTestUtil.createJobDescription2()
+        );
+        when(jobDescriptionService.getJobDescriptionsBySalary(salary)).thenReturn(jobDescriptions);
+
+        List<JobDescriptionDto> jobDescriptionDtoList = Arrays.asList(
+                JobDescriptionDtoTestUtil.createJobDescriptionDto1(),
+                JobDescriptionDtoTestUtil.createJobDescriptionDto2()
+        );
+        when(jobDescriptionMapper.entitiesToDtoList(jobDescriptions)).thenReturn(jobDescriptionDtoList);
+
+        // When
+        ResponseEntity<List<JobDescriptionDto>> response = jobDescriptionUserController.getJobDescriptionBySalary(salary);
+
+        // Then
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(jobDescriptionDtoList, response.getBody());
+
+    }
 
     @Test
     public void getJobDescriptionBySchoolSubjects () {
