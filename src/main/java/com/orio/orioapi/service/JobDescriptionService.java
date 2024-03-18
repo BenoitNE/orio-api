@@ -1,6 +1,7 @@
 package com.orio.orioapi.service;
 
 import com.orio.orioapi.persistence.entity.JobDescription;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,5 +22,5 @@ public interface JobDescriptionService {
 
     Iterable<JobDescription> getJobDescriptionsBySchoolSubjects(List<String> schoolSubjects);
 
-
+    Iterable<JobDescription> getJobDescriptionByJob(List<String> job);
 }
