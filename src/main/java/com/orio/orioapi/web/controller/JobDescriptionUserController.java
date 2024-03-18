@@ -77,6 +77,17 @@ public class JobDescriptionUserController {
         }
     }
 
+    @GetMapping("/jobs")
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionByJob(@RequestParam("job") List<String> job) {
+        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionByJob(job);
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return  ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     private static <T> List<T> iterableToList(Iterable<T> iterable) {
         List<T> resultList = new ArrayList<>();
 
