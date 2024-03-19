@@ -88,6 +88,19 @@ public class JobDescriptionUserController {
         }
     }
 
+    @GetMapping("/studyduration")
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionByStudyDuration(@RequestParam("studyduration") List<String> studyDuration) {
+        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionByStudyDuration(studyDuration);
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return  ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
     private static <T> List<T> iterableToList(Iterable<T> iterable) {
         List<T> resultList = new ArrayList<>();
 

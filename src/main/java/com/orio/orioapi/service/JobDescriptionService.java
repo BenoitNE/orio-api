@@ -23,4 +23,6 @@ public interface JobDescriptionService {
     Iterable<JobDescription> getJobDescriptionsBySchoolSubjects(List<String> schoolSubjects);
 
     Iterable<JobDescription> getJobDescriptionByJob(List<String> job);
+
+    Iterable<JobDescription> getJobDescriptionByStudyDuration(List<String> studyDuration);
 }
