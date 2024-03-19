@@ -40,7 +40,7 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
         return jobDescriptionRepository.findByInterestsIn(interests);
     }
 
-@Override
+    @Override
     public Iterable<JobDescription> getJobDescriptionsBySectors(List<String> sectors) {
         return jobDescriptionRepository.findBySectorsIn(sectors);
     }
