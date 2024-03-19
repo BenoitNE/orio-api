@@ -17,10 +17,22 @@ public interface JobDescriptionService {
     void deleteJobDescriptionById(long id);
 
     Iterable<JobDescription> getJobDescriptionsByInterests(List<String> interests);
+<<<<<<< HEAD
+
+
+
+
+
+	
+
+	Iterable<JobDescription> getJobDescriptionsBySectors(List<String> sectors);
+
+=======
     
     Iterable<JobDescription> getJobDescriptionsBySalary(String salary);
 
     Iterable<JobDescription> getJobDescriptionsBySchoolSubjects(List<String> schoolSubjects);
 
     Iterable<JobDescription> getJobDescriptionByJob(List<String> job);
+>>>>>>> af15f3847ba447f46212416677d9304c73a353b3
 }

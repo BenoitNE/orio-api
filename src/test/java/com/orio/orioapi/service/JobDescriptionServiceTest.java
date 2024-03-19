@@ -40,9 +40,9 @@ public class JobDescriptionServiceTest {
         List<JobDescription> result = jobDescriptionService.getAllJobDescriptions();
 
         // then
-        assertEquals(2, result.size());
-        assertEquals(1, result.get(0).getId());
-        assertEquals(2, result.get(1).getId());
+        assertEquals(2,result.size());
+        assertEquals(1,result.get(0).getId());
+        assertEquals(2,result.get(1).getId());
     }
 
     @Test
@@ -104,6 +104,15 @@ public class JobDescriptionServiceTest {
         // Then
         assertNotNull(result);
     }
+<<<<<<< HEAD
+    @Test
+    public void getJobDescriptionsBySector () {
+        // Given
+        List<String> interests = Arrays.asList("Informatique", "Finance");
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findByInterestsIn(interests))
+=======
     
     @Test
     public void getJobDescriptionsBySalary() {
@@ -112,12 +121,16 @@ public class JobDescriptionServiceTest {
 
         JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
         when(jobDescriptionRepository.findBySalaryContainingIgnoreCase(salary))
+>>>>>>> af15f3847ba447f46212416677d9304c73a353b3
                 .thenReturn(Arrays.asList(
                         JobDescriptionTestUtil.createJobDescription1(),
                         JobDescriptionTestUtil.createJobDescription2()
                 ));
 
         // When
+<<<<<<< HEAD
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsByInterests(interests);
+=======
         Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySalary(salary);
 
         // Then
@@ -157,6 +170,7 @@ public class JobDescriptionServiceTest {
 
         // When
         Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySchoolSubjects(jobs);
+>>>>>>> af15f3847ba447f46212416677d9304c73a353b3
 
         // Then
         assertNotNull(result);
