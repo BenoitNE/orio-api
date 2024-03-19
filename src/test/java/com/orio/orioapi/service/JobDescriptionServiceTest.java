@@ -104,6 +104,7 @@ public class JobDescriptionServiceTest {
         // Then
         assertNotNull(result);
     }
+<<<<<<< HEAD
     @Test
     public void getJobDescriptionsBySector () {
         // Given
@@ -111,13 +112,65 @@ public class JobDescriptionServiceTest {
 
         JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
         when(jobDescriptionRepository.findByInterestsIn(interests))
+=======
+    
+    @Test
+    public void getJobDescriptionsBySalary() {
+        // Given
+        String salary = "60 000";
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findBySalaryContainingIgnoreCase(salary))
+>>>>>>> af15f3847ba447f46212416677d9304c73a353b3
                 .thenReturn(Arrays.asList(
                         JobDescriptionTestUtil.createJobDescription1(),
                         JobDescriptionTestUtil.createJobDescription2()
                 ));
 
         // When
+<<<<<<< HEAD
         Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsByInterests(interests);
+=======
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySalary(salary);
+
+        // Then
+        assertNotNull(result);
+    }
+
+    @Test
+    public void getJobDescriptionsBySchoolSubjects () {
+        // Given
+        List<String> schoolSubjects = Arrays.asList("Informatique", "Beaux-Arts");
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findByInterestsIn(schoolSubjects))
+                .thenReturn(Arrays.asList(
+                        JobDescriptionTestUtil.createJobDescription1(),
+                        JobDescriptionTestUtil.createJobDescription2()
+                ));
+
+        // When
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySchoolSubjects(schoolSubjects);
+
+        // Then
+        assertNotNull(result);
+    }
+
+    @Test
+    public void getJobDescriptionsByJob() {
+        // Given
+        List<String> jobs = Arrays.asList("Actuaire", "Agent de sécurité");
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findByJobIn(jobs))
+                .thenReturn(Arrays.asList(
+                        JobDescriptionTestUtil.createJobDescription1(),
+                        JobDescriptionTestUtil.createJobDescription2()
+                ));
+
+        // When
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySchoolSubjects(jobs);
+>>>>>>> af15f3847ba447f46212416677d9304c73a353b3
 
         // Then
         assertNotNull(result);
