@@ -185,5 +185,24 @@ public class JobDescriptionServiceTest {
         // Then
         assertNotNull(result);
     }
+
+    @Test
+    public void getJobDescriptionByStudyDuration() {
+        // Given
+        List<String> studyDuration = Arrays.asList("moyenne" , "courte");
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findByStudyDurationIn(studyDuration))
+                .thenReturn(Arrays.asList(
+                        JobDescriptionTestUtil.createJobDescription1(),
+                        JobDescriptionTestUtil.createJobDescription2()
+                ));
+
+        // When
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionByStudyDuration(studyDuration);
+
+        // Then
+        assertNotNull(result);
+    }
 }
 
