@@ -61,6 +61,7 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
         return jobDescriptionRepository.findByJobIn(job);
     }
 
+    @Override
     public Iterable<JobDescription> getJobDescriptionByStudyDuration(List<String> studyDuration){
         return jobDescriptionRepository.findByStudyDurationIn(studyDuration);
     }
