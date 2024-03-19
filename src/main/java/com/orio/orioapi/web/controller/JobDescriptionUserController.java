@@ -54,12 +54,19 @@ public class JobDescriptionUserController {
             return ResponseEntity.notFound().build();
         }
     }
-    
-<<<<<<< HEAD
+
+
     @GetMapping("/sectors")
-    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionsBySectors(@RequestParam List<String> sectors)  {
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionsBySectors(@RequestParam List<String> sectors) {
         Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySectors(sectors);
-=======
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/salary")
     public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionBySalary(@RequestParam("salary") String salary) {
         Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySalary(salary);
@@ -85,7 +92,6 @@ public class JobDescriptionUserController {
     @GetMapping("/jobs")
     public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionByJob(@RequestParam("job") List<String> job) {
         Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionByJob(job);
->>>>>>> af15f3847ba447f46212416677d9304c73a353b3
         if (jobDescriptions != null) {
             List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
             return  ResponseEntity.ok(jobDescriptionDtoList);
@@ -93,18 +99,13 @@ public class JobDescriptionUserController {
             return ResponseEntity.notFound().build();
         }
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> af15f3847ba447f46212416677d9304c73a353b3
     private static <T> List<T> iterableToList(Iterable<T> iterable) {
         List<T> resultList = new ArrayList<>();
 
         for (T element : iterable) {
             resultList.add(element);
         }
-
         return resultList;
     }
 }

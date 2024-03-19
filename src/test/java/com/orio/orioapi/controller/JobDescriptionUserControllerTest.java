@@ -97,7 +97,6 @@ public class JobDescriptionUserControllerTest {
     }
     
     @Test
-<<<<<<< HEAD
     public void getJobDescriptionBySector() {
         // Given
         List<String> sectors = Arrays.asList("vente", "social");
@@ -106,7 +105,7 @@ public class JobDescriptionUserControllerTest {
                 JobDescriptionTestUtil.createJobDescription1(),
                 JobDescriptionTestUtil.createJobDescription2()
         );
-        when(jobDescriptionService.getJobDescriptionsByInterests(sectors)).thenReturn(jobDescriptions);
+        when(jobDescriptionService.getJobDescriptionsBySectors(sectors)).thenReturn(jobDescriptions);
 
         List<JobDescriptionDto> jobDescriptionDtoList = Arrays.asList(
                 JobDescriptionDtoTestUtil.createJobDescriptionDto1(),
@@ -123,11 +122,9 @@ public class JobDescriptionUserControllerTest {
 
     }
 
-=======
     public void getJobDescriptionBySalary () {
         // Given
         String salary = "60 000";
->>>>>>> af15f3847ba447f46212416677d9304c73a353b3
 
         List<JobDescription> jobDescriptions = Arrays.asList(
                 JobDescriptionTestUtil.createJobDescription1(),
