@@ -40,6 +40,11 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
         return jobDescriptionRepository.findByInterestsIn(interests);
     }
 
+@Override
+    public Iterable<JobDescription> getJobDescriptionsBySectors(List<String> sectors) {
+        return jobDescriptionRepository.findBySectorsIn(sectors);
+    }
+
 
     @Override
     public Iterable<JobDescription> getJobDescriptionsBySalary(String salary) {
@@ -58,9 +63,5 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
 
     public Iterable<JobDescription> getJobDescriptionByStudyDuration(List<String> studyDuration){
         return jobDescriptionRepository.findByStudyDurationIn(studyDuration);
-
     }
-
-
-
 }

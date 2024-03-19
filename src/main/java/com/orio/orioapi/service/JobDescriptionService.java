@@ -1,7 +1,6 @@
 package com.orio.orioapi.service;
 
 import com.orio.orioapi.persistence.entity.JobDescription;
-import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +16,8 @@ public interface JobDescriptionService {
     void deleteJobDescriptionById(long id);
 
     Iterable<JobDescription> getJobDescriptionsByInterests(List<String> interests);
+
+	Iterable<JobDescription> getJobDescriptionsBySectors(List<String> sectors);
     
     Iterable<JobDescription> getJobDescriptionsBySalary(String salary);
 

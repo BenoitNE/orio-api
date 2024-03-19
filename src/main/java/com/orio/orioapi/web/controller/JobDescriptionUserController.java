@@ -54,7 +54,19 @@ public class JobDescriptionUserController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
+
+    @GetMapping("/sectors")
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionsBySectors(@RequestParam List<String> sectors) {
+        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySectors(sectors);
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/salary")
     public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionBySalary(@RequestParam("salary") String salary) {
         Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySalary(salary);
@@ -107,7 +119,6 @@ public class JobDescriptionUserController {
         for (T element : iterable) {
             resultList.add(element);
         }
-
         return resultList;
     }
 }

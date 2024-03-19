@@ -7,13 +7,13 @@ import java.util.List;
 public class JobDescriptionDto {
 
     private String job;
-    private List<String> sectors;
-    private List<String> personalityTraits;
-    private List<String> schoolSubjects;
-    private List<String> interests;
+    private List<String>sectors;
+    private List<String>personalityTraits;
+    private List<String>schoolSubjects;
+    private List<String>interests;
     private String studyDuration;
     private String salary;
-    private List<String> physicalEnvironments;
+    private List<String>physicalEnvironments;
     private String description;
     private String study;
     private int userScore;
