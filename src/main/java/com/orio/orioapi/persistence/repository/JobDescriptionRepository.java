@@ -14,12 +14,13 @@ public interface JobDescriptionRepository extends JpaRepository<JobDescription, 
 
     Iterable<JobDescription> findBySectorsIn(List<String> sectors);
 
-
     Iterable<JobDescription> findBySalaryContainingIgnoreCase(String salary);
 
     Iterable <JobDescription> findBySchoolSubjectsIn(List<String> schoolSubjects);
 
     Iterable<JobDescription> findByJobIn(List<String> job);
+
+    Iterable<JobDescription> findByStudyDurationIn(List<String> studyDuration);
 
 }
 
