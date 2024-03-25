@@ -18,18 +18,22 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     public JobDescriptionServiceImpl(JobDescriptionRepository jobDescriptionRepository) {
         this.jobDescriptionRepository = jobDescriptionRepository;
     }
+
     @Override
     public List<JobDescription> getAllJobDescriptions() {
         return jobDescriptionRepository.findAll();
     }
+
     @Override
     public Optional<JobDescription> getJobDescriptionById(long id) {
         return jobDescriptionRepository.findById(id);
     }
+
     @Override
     public JobDescription saveJobDescription(JobDescription jobDescription) {
         return jobDescriptionRepository.save(jobDescription);
     }
+
     @Override
     public void deleteJobDescriptionById(long id) {
         jobDescriptionRepository.deleteById(id);
@@ -39,7 +43,11 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     public Iterable<JobDescription> getJobDescriptionsByInterests(List<String> interests) {
         return jobDescriptionRepository.findByInterestsIn(interests);
     }
-
+  
+    @Override
+    public Iterable<JobDescription> getJobDescriptionsBySectors(List<String> sectors) {
+        return jobDescriptionRepository.findBySectorsIn(sectors);
+    }
 
     @Override
     public Iterable<JobDescription> getJobDescriptionsBySalary(String salary) {
@@ -54,6 +62,11 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     @Override
     public Iterable<JobDescription> getJobDescriptionByJob(List<String> job) {
         return jobDescriptionRepository.findByJobIn(job);
+    }
+
+    @Override
+    public Iterable<JobDescription> getJobDescriptionByStudyDuration(List<String> studyDuration){
+        return jobDescriptionRepository.findByStudyDurationIn(studyDuration);
     }
 
     @Override

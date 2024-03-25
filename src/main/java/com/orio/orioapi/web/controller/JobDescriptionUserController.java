@@ -54,7 +54,19 @@ public class JobDescriptionUserController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
+
+    @GetMapping("/sectors")
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionsBySectors(@RequestParam List<String> sectors) {
+        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySectors(sectors);
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/salary")
     public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionBySalary(@RequestParam("salary") String salary) {
         Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySalary(salary);
@@ -99,13 +111,24 @@ public class JobDescriptionUserController {
         }
     }
 
+    @GetMapping("/study-duration")
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionByStudyDuration(@RequestParam("studyDuration") List<String> studyDuration) {
+        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionByStudyDuration(studyDuration);
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return  ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
     private static <T> List<T> iterableToList(Iterable<T> iterable) {
         List<T> resultList = new ArrayList<>();
 
         for (T element : iterable) {
             resultList.add(element);
         }
-
         return resultList;
     }
 }
