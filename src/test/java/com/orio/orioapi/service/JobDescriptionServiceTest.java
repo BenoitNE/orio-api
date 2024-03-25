@@ -154,7 +154,7 @@ public class JobDescriptionServiceTest {
         List<String> schoolSubjects = Arrays.asList("Informatique", "Beaux-Arts");
 
         JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
-        when(jobDescriptionRepository.findByInterestsIn(schoolSubjects))
+        when(jobDescriptionRepository.findBySchoolSubjectsIn(schoolSubjects))
                 .thenReturn(Arrays.asList(
                         JobDescriptionTestUtil.createJobDescription1(),
                         JobDescriptionTestUtil.createJobDescription2()
