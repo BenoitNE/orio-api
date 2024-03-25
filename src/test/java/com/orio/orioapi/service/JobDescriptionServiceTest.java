@@ -146,7 +146,7 @@ public class JobDescriptionServiceTest {
     @Test
     public void getJobDescriptionsByJob() {
         // Given
-        List<String> jobs = Arrays.asList("Actuaire", "Agent de sécurité");
+        List<String> jobs = Arrays.asList("Ingénieur Logiciel", "Designer Graphique");
 
         JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
         when(jobDescriptionRepository.findByJobIn(jobs))
@@ -156,10 +156,32 @@ public class JobDescriptionServiceTest {
                 ));
 
         // When
-        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionsBySchoolSubjects(jobs);
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionByJob(jobs);
 
         // Then
         assertNotNull(result);
+    }
+
+    @Test
+    public void getJobDescriptionByPersonalityTraits() {
+        // Given
+        List<String> personalityTraits = Arrays.asList("Analytique", "Orienté détail", "Créatif");
+
+        JobDescriptionRepository jobDescriptionRepository = mock(JobDescriptionRepository.class);
+        when(jobDescriptionRepository.findByPersonalityTraitsIn(personalityTraits)).thenReturn(Arrays.asList(
+                JobDescriptionTestUtil.createJobDescription1(),
+                JobDescriptionTestUtil.createJobDescription2()
+        ));
+
+        // When
+        Iterable<JobDescription> result = jobDescriptionService.getJobDescriptionByPersonalityTraits(personalityTraits);
+        System.out.println("Voici le result : " + result);
+
+        // Then
+        assertTrue(true, "c'est vrai !!");
+        assertNotNull(result);
+        assertEquals("Ingénieur Logiciel", result, "On recoit bien le job1");
+        assertEquals("Designer Graphique", result, "On recoit bien le job2");
     }
 }
 

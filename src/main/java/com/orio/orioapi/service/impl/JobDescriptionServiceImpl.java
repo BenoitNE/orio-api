@@ -55,4 +55,9 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     public Iterable<JobDescription> getJobDescriptionByJob(List<String> job) {
         return jobDescriptionRepository.findByJobIn(job);
     }
+
+    @Override
+    public Iterable<JobDescription> getJobDescriptionByPersonalityTraits(List<String> personalityTraits) {
+        return jobDescriptionRepository.findByPersonalityTraitsIn(personalityTraits);
+    }
 }
