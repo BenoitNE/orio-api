@@ -111,6 +111,22 @@ public class JobDescriptionUserController {
         }
     }
 
+    @GetMapping("/filter")
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionByCustomFilters(
+            @RequestParam("keyword") String keyword,
+            @RequestParam("personalityTraitToSearch") String personalityTraitToSearch,
+            @RequestParam("schoolSubjectToSearch") String schoolSubjectToSearch,
+            @RequestParam("sectorToSearch") String sectorToSearch,
+            @RequestParam("studyDuration") String studyDuration){
+        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getByCustomFilters(keyword, personalityTraitToSearch, schoolSubjectToSearch, sectorToSearch,studyDuration);
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return  ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     private static <T> List<T> iterableToList(Iterable<T> iterable) {
         List<T> resultList = new ArrayList<>();

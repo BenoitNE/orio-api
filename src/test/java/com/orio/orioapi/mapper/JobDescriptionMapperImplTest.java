@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -76,13 +77,13 @@ public class JobDescriptionMapperImplTest {
     private JobDescription createSampleJobDescription() {
         JobDescription jobDescription = new JobDescription();
         jobDescription.setJob("Ingénieur logiciel");
-        jobDescription.setSectors(Arrays.asList("Technologie", "Développement logiciel"));
-        jobDescription.setPersonalityTraits(Arrays.asList("Analytique", "Orienté vers les détails"));
-        jobDescription.setSchoolSubjects(Arrays.asList("Informatique", "Mathématiques"));
-        jobDescription.setInterests(Arrays.asList("Programmation", "Résolution de problèmes"));
+        jobDescription.setSectors(new HashSet<>(Arrays.asList("Technologie", "Développement logiciel")));
+        jobDescription.setPersonalityTraits(new HashSet<>(Arrays.asList("Analytique", "Orienté vers les détails")));
+        jobDescription.setSchoolSubjects(new HashSet<>(Arrays.asList("Informatique", "Mathématiques")));
+        jobDescription.setInterests(new HashSet<>(Arrays.asList("Programmation", "Résolution de problèmes")));
         jobDescription.setStudyDuration("4");
         jobDescription.setSalary("80000");
-        jobDescription.setPhysicalEnvironments(Arrays.asList("Bureau", "Espace collaboratif"));
+        jobDescription.setPhysicalEnvironments(new HashSet<>(Arrays.asList("Bureau", "Espace collaboratif")));
         jobDescription.setDescription("Opportunité passionnante pour un ingénieur logiciel de travailler sur des projets innovants.");
         jobDescription.setStudy("Licence en informatique");
         jobDescription.setUserScore(11);
