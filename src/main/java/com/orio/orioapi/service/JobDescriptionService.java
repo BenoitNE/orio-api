@@ -26,4 +26,6 @@ public interface JobDescriptionService {
     Iterable<JobDescription> getJobDescriptionByJob(List<String> job);
 
     Iterable<JobDescription> getJobDescriptionByStudyDuration(List<String> studyDuration);
+
+    Iterable<JobDescription> getByCustomFilters(String keywords, String personalityTraitToSearch, String schoolSubjectToSearch, String sectorToSearch, String studyDuration);
 }
