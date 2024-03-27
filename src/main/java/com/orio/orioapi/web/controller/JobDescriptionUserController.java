@@ -57,7 +57,7 @@ public class JobDescriptionUserController {
 
 
     @GetMapping("/sectors")
-    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionsBySectors(@RequestParam List<String> sectors) {
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionsBySectors(@RequestParam("sectors") List<String> sectors) {
         Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySectors(sectors);
         if (jobDescriptions != null) {
             List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
