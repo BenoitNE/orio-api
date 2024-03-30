@@ -17,7 +17,7 @@ public interface JobDescriptionService {
 
     Iterable<JobDescription> getJobDescriptionsByInterests(List<String> interests);
 
-	Iterable<JobDescription> getJobDescriptionsBySectors(List<String> sectors);
+	  Iterable<JobDescription> getJobDescriptionsBySectors(List<String> sectors);
     
     Iterable<JobDescription> getJobDescriptionsBySalary(String salary);
 
@@ -28,4 +28,7 @@ public interface JobDescriptionService {
     Iterable<JobDescription> getJobDescriptionByStudyDuration(List<String> studyDuration);
 
     Iterable<JobDescription> getJobDescriptionByPersonalityTraits(List<String> personalityTraits);
+
+    Iterable<JobDescription> getByCustomFilters(String keywords, String personalityTraitToSearch, String schoolSubjectToSearch, String sectorToSearch, String studyDuration);
+
 }

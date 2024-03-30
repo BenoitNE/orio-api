@@ -57,7 +57,7 @@ public class JobDescriptionUserController {
 
 
     @GetMapping("/sectors")
-    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionsBySectors(@RequestParam List<String> sectors) {
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionsBySectors(@RequestParam("sectors") List<String> sectors) {
         Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionsBySectors(sectors);
         if (jobDescriptions != null) {
             List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
@@ -114,6 +114,22 @@ public class JobDescriptionUserController {
     @GetMapping("/study-duration")
     public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionByStudyDuration(@RequestParam("studyDuration") List<String> studyDuration) {
         Iterable<JobDescription> jobDescriptions = jobDescriptionService.getJobDescriptionByStudyDuration(studyDuration);
+        if (jobDescriptions != null) {
+            List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
+            return  ResponseEntity.ok(jobDescriptionDtoList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<JobDescriptionDto>> getJobDescriptionByCustomFilters(
+            @RequestParam("keyword") String keyword,
+            @RequestParam("personalityTraitToSearch") String personalityTraitToSearch,
+            @RequestParam("schoolSubjectToSearch") String schoolSubjectToSearch,
+            @RequestParam("sectorToSearch") String sectorToSearch,
+            @RequestParam("studyDuration") String studyDuration){
+        Iterable<JobDescription> jobDescriptions = jobDescriptionService.getByCustomFilters(keyword, personalityTraitToSearch, schoolSubjectToSearch, sectorToSearch,studyDuration);
         if (jobDescriptions != null) {
             List<JobDescriptionDto> jobDescriptionDtoList = jobDescriptionMapper.entitiesToDtoList(iterableToList(jobDescriptions));
             return  ResponseEntity.ok(jobDescriptionDtoList);
